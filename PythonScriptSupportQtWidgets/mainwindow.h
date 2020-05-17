@@ -1,12 +1,16 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QtConcurrent>
 #include <QMainWindow>
 #include <QTextStream>
 #include <QString>
 #include <QFile>
 
 #include <Python.h>
+
+#include "scriptsworker.h"
+#include "scriptsbox.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -30,13 +34,6 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     enum dateFlag {dAll, dOnlyDate, dOnlyTime};
-    //Функция удаляющая существующие файлы
-    void removeFiles(const char *bufferFN = "buffer.buf", const char *stdoutFN = "out.log", const char *stderrFN = "err.log");
-    //Функция запускающая Python интерпритатор
-    QString runPyScript(QString script, QString buffer = "",
-                        const char *bufferFN = "buffer.buf",
-                        const char *stdoutFN = "out.log",
-                        const char *stderrFN = "err.log");
 
     //Функция возвращающая текущую дату в зависимости от флага
     QString dateTime(dateFlag flag);
@@ -58,12 +55,17 @@ private slots:
     void on_interruptButton_clicked();
     void on_checkBox_clicked(bool checked);
 
+signals:
+    void stopAllPyScripts();
+
 private:
-    Ui::MainWindow *ui;
-    const char *bufFileName = "buffer.buf";
+    const char *bufferFN = "buffer.buf";
     const char *stdoutFN = "out.log";
     const char *stderrFN = "err.log";
+    QString resultPyScript = "#@?";
     registerType type = rUpper;
+    ScriptsWorker *worker;
+    Ui::MainWindow *ui;
 };//class MainWindow : public QMainWindow
 
 #endif // MAINWINDOW_H
