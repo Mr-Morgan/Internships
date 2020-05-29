@@ -2,11 +2,11 @@
 #define SCRIPTSEXECUTOR_H
 
 #include <QTextStream>
+#include <QObject>
 #include <QString>
 #include <QFile>
 
 #include <Python.h>
-#include <QObject>
 
 class ScriptsExecutor : public QObject
 {

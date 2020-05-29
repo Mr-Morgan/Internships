@@ -17,12 +17,6 @@ public:
                 const char *stdoutFN = "out.log",
                 const char *stderrFN = "err.log");
 
-public slots:
-    void pyStop();
-
-signals:
-    void finish();
-
 private:
     QMutex mutex;
     ScriptsExecutor *executor;

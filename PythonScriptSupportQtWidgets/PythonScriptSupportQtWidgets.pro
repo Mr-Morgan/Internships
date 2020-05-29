@@ -20,13 +20,15 @@ SOURCES += \
     mainwindow.cpp \
     scriptsbox.cpp \
     scriptsexecutor.cpp \
-    scriptsworker.cpp
+    scriptsworker.cpp \
+    textedit.cpp
 
 HEADERS += \
     mainwindow.h \
     scriptsbox.h \
     scriptsexecutor.h \
-    scriptsworker.h
+    scriptsworker.h \
+    textedit.h
 
 FORMS += \
     mainwindow.ui
